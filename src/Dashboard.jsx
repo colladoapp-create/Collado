@@ -170,99 +170,99 @@ export default function Dashboard({user, onNavigate}){
 
       {/* Topbar */}
       <header style={{width:"100%",display:"flex",alignItems:"center",
-        justifyContent:"space-between",padding:"13px 16px",
-        borderBottom:"1px solid #111",background:"#0a0a0a",
-        position:"sticky",top:0,zIndex:30}}>
-        <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
-  {/* Hamburger on left */}
-  <button onClick={()=>setMenuOpen(o=>!o)} style={{
-    background:"transparent",border:"1px solid #1a1a1a",
-    borderRadius:"6px",cursor:"pointer",
-    display:"flex",flexDirection:"column",gap:"3px",
-    alignItems:"center",justifyContent:"center",width:34,height:32,padding:0}}>
-    <span style={{display:"block",width:14,height:1.5,background:"#444",borderRadius:2,
-      transition:"all 0.3s",
-      transform:menuOpen?"rotate(45deg) translate(3px,3px)":"none"}}/>
-    <span style={{display:"block",width:14,height:1.5,background:"#444",borderRadius:2,
-      transition:"all 0.3s",opacity:menuOpen?0:1}}/>
-    <span style={{display:"block",width:14,height:1.5,background:"#444",borderRadius:2,
-      transition:"all 0.3s",
-      transform:menuOpen?"rotate(-45deg) translate(3px,-3px)":"none"}}/>
-  </button>
-  <span style={{fontSize:"16px",fontWeight:800,letterSpacing:"-0.8px"}}>
-    CollaDO<span style={{color:"#282828",fontWeight:500}}>.track</span>
-  </span>
-</div>
+  justifyContent:"space-between",padding:"13px 16px",
+  borderBottom:"1px solid #111",background:"#0a0a0a",
+  position:"sticky",top:0,zIndex:30}}>
 
-{/* Left slide drawer */}
-{menuOpen&&(
-  <div style={{position:"fixed",inset:0,zIndex:200,display:"flex"}}
-    onClick={()=>setMenuOpen(false)}>
-    {/* Backdrop */}
-    <div style={{position:"absolute",inset:0,background:"rgba(0,0,0,0.6)",
-      animation:"overlayIn 0.25s ease both"}}/>
-    {/* Drawer */}
-    <div style={{position:"relative",width:"260px",height:"100%",
-      background:"#0d0d0d",borderRight:"1px solid #1a1a1a",
-      display:"flex",flexDirection:"column",
-      animation:"drawerSlide 0.3s cubic-bezier(.22,1,.36,1) both",
-      zIndex:201}}
-      onClick={e=>e.stopPropagation()}>
+  {/* Left — hamburger + logo */}
+  <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
+    <button onClick={()=>setMenuOpen(o=>!o)} style={{
+      background:"transparent",border:"1px solid #1a1a1a",
+      borderRadius:"6px",cursor:"pointer",
+      display:"flex",flexDirection:"column",gap:"3px",
+      alignItems:"center",justifyContent:"center",width:34,height:32,padding:0}}>
+      <span style={{display:"block",width:14,height:1.5,background:"#444",borderRadius:2,
+        transition:"all 0.3s",
+        transform:menuOpen?"rotate(45deg) translate(3px,3px)":"none"}}/>
+      <span style={{display:"block",width:14,height:1.5,background:"#444",borderRadius:2,
+        transition:"all 0.3s",opacity:menuOpen?0:1}}/>
+      <span style={{display:"block",width:14,height:1.5,background:"#444",borderRadius:2,
+        transition:"all 0.3s",
+        transform:menuOpen?"rotate(-45deg) translate(3px,-3px)":"none"}}/>
+    </button>
+    <span style={{fontSize:"16px",fontWeight:800,letterSpacing:"-0.8px"}}>
+      CollaDO<span style={{color:"#282828",fontWeight:500}}>.track</span>
+    </span>
+  </div>
 
-      {/* Drawer header */}
-      <div style={{padding:"20px 20px 16px",borderBottom:"1px solid #111"}}>
-        <p style={{fontSize:"18px",fontWeight:800,letterSpacing:"-0.8px",color:"#fff"}}>
-          CollaDO
-        </p>
-        <p style={{fontSize:"11px",color:"#333",marginTop:"4px",
-          overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
-          {user.email}
-        </p>
-      </div>
+  {/* Right — email + sign out */}
+  <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
+    <span className="hide-mobile" style={{color:"#282828",fontSize:"12px",
+      maxWidth:"180px",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+      {user.email}
+    </span>
+    <button onClick={()=>signOut(auth)} style={{
+      background:"transparent",border:"1px solid #1a1a1a",color:"#444",
+      padding:"5px 12px",borderRadius:"6px",cursor:"pointer",
+      fontSize:"12px",fontWeight:600,fontFamily:"inherit"}}>Sign out</button>
+  </div>
 
-      {/* Nav items */}
-      <div style={{flex:1,padding:"12px 10px"}}>
-        {[
-          {label:"Dashboard", page:"dashboard", icon:"📊"},
-          {label:"Tasks",     page:"reminders", icon:"✅"},
-          {label:"Pomodoro",  page:"pomodoro",  icon:"⏱"},
-        ].map(item=>(
-          <button key={item.page} onClick={()=>{setMenuOpen(false);onNavigate(item.page);}}
-            style={{width:"100%",padding:"12px 14px",background:"transparent",
-              border:"none",borderRadius:"10px",color:"#666",
-              fontSize:"14px",fontWeight:600,fontFamily:"inherit",
-              cursor:"pointer",textAlign:"left",display:"flex",
-              alignItems:"center",gap:"12px",marginBottom:"4px",
-              transition:"background 0.15s, color 0.15s"}}
-            onMouseOver={e=>{e.currentTarget.style.background="#1a1a1a";e.currentTarget.style.color="#fff";}}
-            onMouseOut={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color="#666";}}>
-            <span style={{fontSize:"16px"}}>{item.icon}</span>
-            {item.label}
+  {/* Left slide drawer */}
+  {menuOpen&&(
+    <div style={{position:"fixed",inset:0,zIndex:200,display:"flex"}}
+      onClick={()=>setMenuOpen(false)}>
+      <div style={{position:"absolute",inset:0,background:"rgba(0,0,0,0.6)",
+        animation:"overlayIn 0.25s ease both"}}/>
+      <div style={{position:"relative",width:"260px",height:"100%",
+        background:"#0d0d0d",borderRight:"1px solid #1a1a1a",
+        display:"flex",flexDirection:"column",
+        animation:"drawerSlide 0.3s cubic-bezier(.22,1,.36,1) both",
+        zIndex:201}}
+        onClick={e=>e.stopPropagation()}>
+        <div style={{padding:"20px 20px 16px",borderBottom:"1px solid #111"}}>
+          <p style={{fontSize:"18px",fontWeight:800,letterSpacing:"-0.8px",color:"#fff"}}>
+            CollaDO
+          </p>
+          <p style={{fontSize:"11px",color:"#333",marginTop:"4px",
+            overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+            {user.email}
+          </p>
+        </div>
+        <div style={{flex:1,padding:"12px 10px"}}>
+          {[
+            {label:"Dashboard", page:"dashboard"},
+            {label:"Tasks",     page:"reminders"},
+            {label:"Pomodoro",  page:"pomodoro"},
+          ].map(item=>(
+            <button key={item.page} onClick={()=>{setMenuOpen(false);onNavigate(item.page);}}
+              style={{width:"100%",padding:"12px 14px",background:"transparent",
+                border:"none",borderRadius:"10px",color:"#666",
+                fontSize:"14px",fontWeight:600,fontFamily:"inherit",
+                cursor:"pointer",textAlign:"left",display:"flex",
+                alignItems:"center",gap:"12px",marginBottom:"4px",
+                transition:"background 0.15s, color 0.15s"}}
+              onMouseOver={e=>{e.currentTarget.style.background="#1a1a1a";e.currentTarget.style.color="#fff";}}
+              onMouseOut={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color="#666";}}>
+              {item.label}
+            </button>
+          ))}
+        </div>
+        <div style={{padding:"16px",borderTop:"1px solid #111"}}>
+          <button onClick={()=>signOut(auth)} style={{
+            width:"100%",padding:"11px",background:"transparent",
+            border:"1px solid #1e1e1e",color:"#444",borderRadius:"10px",
+            cursor:"pointer",fontSize:"13px",fontWeight:600,fontFamily:"inherit",
+            transition:"border-color 0.15s,color 0.15s"}}
+            onMouseOver={e=>{e.currentTarget.style.borderColor="#f87171";e.currentTarget.style.color="#f87171";}}
+            onMouseOut={e=>{e.currentTarget.style.borderColor="#1e1e1e";e.currentTarget.style.color="#444";}}>
+            Sign out
           </button>
-        ))}
-      </div>
-
-      {/* Sign out */}
-      <div style={{padding:"16px",borderTop:"1px solid #111"}}>
-        <button onClick={()=>signOut(auth)} style={{
-          width:"100%",padding:"11px",background:"transparent",
-          border:"1px solid #1e1e1e",color:"#444",borderRadius:"10px",
-          cursor:"pointer",fontSize:"13px",fontWeight:600,fontFamily:"inherit",
-          transition:"border-color 0.15s,color 0.15s"}}
-          onMouseOver={e=>{e.currentTarget.style.borderColor="#f87171";e.currentTarget.style.color="#f87171";}}
-          onMouseOut={e=>{e.currentTarget.style.borderColor="#1e1e1e";e.currentTarget.style.color="#444";}}>
-          Sign out
-        </button>
+        </div>
       </div>
     </div>
-  </div>
-)}
-          <button onClick={()=>signOut(auth)} style={{
-            background:"transparent",border:"1px solid #1a1a1a",color:"#444",
-            padding:"5px 12px",borderRadius:"6px",cursor:"pointer",
-            fontSize:"12px",fontWeight:600,fontFamily:"inherit"}}>Sign out</button>
-        </div>
-      </header>
+  )}
+
+</header>
 
       <main style={{width:"100%",maxWidth:"900px",margin:"0 auto",
         padding:"16px clamp(16px,4vw,48px) 80px",boxSizing:"border-box"}}>
