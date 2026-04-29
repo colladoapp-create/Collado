@@ -193,31 +193,6 @@ export default function Dashboard({user, onNavigate}){
     CollaDO<span style={{color:"#282828",fontWeight:500}}>.track</span>
   </span>
 </div>
-        <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
-          <span className="hide-mobile" style={{color:"#282828",fontSize:"12px",
-            maxWidth:"180px",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
-            {user.email}
-          </span>
-          <div style={{position:"relative"}}>
-  <button onClick={()=>setMenuOpen(o=>!o)} style={{
-    background:"transparent",border:"1px solid #1a1a1a",
-    borderRadius:"6px",cursor:"pointer",
-    display:"flex",flexDirection:"column",gap:"3px",
-    alignItems:"center",justifyContent:"center",width:34,height:32,padding:0}}>
-    <span style={{display:"block",width:14,height:1.5,
-      background:"#444",borderRadius:2,
-      transition:"all 0.3s",
-      transform:menuOpen?"rotate(45deg) translate(3px,3px)":"none"}}/>
-    <span style={{display:"block",width:14,height:1.5,
-      background:"#444",borderRadius:2,
-      transition:"all 0.3s",
-      opacity:menuOpen?0:1}}/>
-    <span style={{display:"block",width:14,height:1.5,
-      background:"#444",borderRadius:2,
-      transition:"all 0.3s",
-      transform:menuOpen?"rotate(-45deg) translate(3px,-3px)":"none"}}/>
-  </button>
-</div>
 
 {/* Left slide drawer */}
 {menuOpen&&(
