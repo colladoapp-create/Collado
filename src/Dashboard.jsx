@@ -173,9 +173,26 @@ export default function Dashboard({user, onNavigate}){
         justifyContent:"space-between",padding:"13px 16px",
         borderBottom:"1px solid #111",background:"#0a0a0a",
         position:"sticky",top:0,zIndex:30}}>
-        <span style={{fontSize:"16px",fontWeight:800,letterSpacing:"-0.8px"}}>
-          CollaDO<span style={{color:"#282828",fontWeight:500}}>.track</span>
-        </span>
+        <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
+  {/* Hamburger on left */}
+  <button onClick={()=>setMenuOpen(o=>!o)} style={{
+    background:"transparent",border:"1px solid #1a1a1a",
+    borderRadius:"6px",cursor:"pointer",
+    display:"flex",flexDirection:"column",gap:"3px",
+    alignItems:"center",justifyContent:"center",width:34,height:32,padding:0}}>
+    <span style={{display:"block",width:14,height:1.5,background:"#444",borderRadius:2,
+      transition:"all 0.3s",
+      transform:menuOpen?"rotate(45deg) translate(3px,3px)":"none"}}/>
+    <span style={{display:"block",width:14,height:1.5,background:"#444",borderRadius:2,
+      transition:"all 0.3s",opacity:menuOpen?0:1}}/>
+    <span style={{display:"block",width:14,height:1.5,background:"#444",borderRadius:2,
+      transition:"all 0.3s",
+      transform:menuOpen?"rotate(-45deg) translate(3px,-3px)":"none"}}/>
+  </button>
+  <span style={{fontSize:"16px",fontWeight:800,letterSpacing:"-0.8px"}}>
+    CollaDO<span style={{color:"#282828",fontWeight:500}}>.track</span>
+  </span>
+</div>
         <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
           <span className="hide-mobile" style={{color:"#282828",fontSize:"12px",
             maxWidth:"180px",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
