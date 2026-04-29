@@ -37,7 +37,7 @@ export default function Auth() {
         padding: "40px", width: "100%", maxWidth: "400px"
       }}>
         <h1 style={{ color: "#fff", textAlign: "center", marginBottom: "8px" }}>
-          KTU Attendance
+          CollaDO
         </h1>
         <p style={{ color: "#888", textAlign: "center", marginBottom: "32px" }}>
           {isLogin ? "Sign in to your account" : "Create a new account"}
