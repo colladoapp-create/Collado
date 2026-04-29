@@ -102,7 +102,7 @@ export default function Reminders({ user, onNavigate }) {
             display:"flex", alignItems:"center",
           }}>←</button>
           <span style={{ fontSize:"16px", fontWeight:800, letterSpacing:"-0.8px" }}>
-            KTU<span style={{ color:"#282828", fontWeight:500 }}>.tasks</span>
+           CollaDO<span style={{ color:"#282828", fontWeight:500 }}>.tasks</span>
           </span>
         </div>
         {pending > 0 && (
