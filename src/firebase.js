@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBFmy5FvnNuv1q90oRUbLX9yk9K9TT4Kjg",
-  authDomain: authDomain: "collado.vercel.app",
+  authDomain: "collado.vercel.app",
   projectId: "ktu-attendance-2171a",
   storageBucket: "ktu-attendance-2171a.firebasestorage.app",
   messagingSenderId: "654902840646",
