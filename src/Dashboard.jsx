@@ -3,7 +3,9 @@ import { auth, db } from "./firebase";
 import { signOut } from "firebase/auth";
 import { collection, onSnapshot, doc, setDoc, deleteDoc } from "firebase/firestore";
 
-const TARGET = 75;
+const [target, setTarget] = useState(75);
+const [showTargetModal, setShowTargetModal] = useState(false);
+const [targetInput, setTargetInput] = useState("75");
 const MONTHS = ["January","February","March","April","May","June",
   "July","August","September","October","November","December"];
 const DAYS_SHORT = ["Su","Mo","Tu","We","Th","Fr","Sa"];
@@ -57,6 +59,9 @@ export default function Dashboard({user, onNavigate}){
   useEffect(()=>{const t=setTimeout(()=>setCalIn(true),100);return()=>clearTimeout(t);},[]);
   useEffect(()=>onSnapshot(subjCol,snap=>setSubjects(snap.docs.map(d=>({id:d.id,...d.data()})))),[uid]);
   useEffect(()=>onSnapshot(calCol,snap=>{const obj={};snap.docs.forEach(d=>{obj[d.id]=d.data();});setCalData(obj);}),[uid]);
+  useEffect(() => {
+  const settingsDoc = doc(db, "users", uid, "settings", "preferences");
+  onSnapshot(settingsDoc, (snap) => {if (snap.exists()) {setTarget(snap.data().attendanceTarget ?? 75);} else {setShowTargetModal(true);}});}, [uid]);
 
   const attendance = useCallback(()=>{
     const map={};
